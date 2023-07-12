@@ -31,13 +31,13 @@
 
     <!-- User form to input location information and wants -->
     <div class="container">
-        <section id="adopt-form" class="section is-small">
-            <h2 class="is-size-1 has-text-centered has-text-link has-text-weight-semibold">Find a pet!</h2>
-            <form id="adopt-input">
+        <section id="breed-form" class="section is-small">
+            <h2 class="is-size-1 has-text-centered has-text-link has-text-weight-semibold">Find a breed!</h2>
+            <form id="breed-input">
                 <div class="field">
-                    <label class="label">City: </label>
+                    <label class="label">Breed: </label>
                     <div class="control">
-                    <input class="input" type="text" placeholder="Text input">
+                    <input class="search-breed" type="search" placeholder="Breed name">
                     </div>
                 </div>
                 
@@ -45,9 +45,9 @@
                     <label class="label">Pet Type</label>
                     <div class="control">
                     <div class="select">
-                        <select>
-                        <option>Dog</option>
-                        <option>Cat</option>
+                        <select id="pet-select">
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
                         </select>
                     </div>
                     </div>
@@ -64,10 +64,7 @@
                 
                 <div class="field is-grouped">
                     <div class="control">
-                    <button class="button is-link">Submit</button>
-                    </div>
-                    <div class="control">
-                    <button class="button is-link is-light">Cancel</button>
+                    <button class="button is-link" type="submit">Submit</button>
                     </div>
                 </div>
             </form>
@@ -82,6 +79,7 @@
           </div>
     </footer>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <!-- Custom JavaScript -->
     <script src="./assets/js/script.js"></script>
 </body>
