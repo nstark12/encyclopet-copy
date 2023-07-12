@@ -1,8 +1,8 @@
 var breedInputEl = document.querySelector(".search-breed");
 var breedForm = document.querySelector("#breed-input");
-var dogBtn = document.querySelector("#dog-btn");
+var petType = document.querySelector("#pet-select");
 var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
-var name = 'golden retriever';
+
 
 
 // get user answer from breed input
@@ -18,7 +18,7 @@ function getBreedInputCat(event) {
     event.preventDefault();
     var searchTerm = breedInputEl.value;
     getInfoByCatBreed(searchTerm);
-    localStorage.setItem("search", JSON.stringify(searchHistory));
+    // localStorage.setItem("search", JSON.stringify(searchHistory));
     console.log(searchTerm)
 }
 // get user input from dropdown
@@ -61,16 +61,32 @@ function getBreedInputCat(event) {
         }
 
 
+        petType.onchange = changeListener;
+
+function changeListener() {
+    var value = this.value;
+
+    if (value == "dog") {
+        breedForm.addEventListener("submit", getBreedInput);
+    } else if (value == "cat") {
+        breedForm.addEventListener("submit", getBreedInputCat);
+    }
+}
+
+changeListener();
 
 // if selected option is dog, run dog breed api
-if (document.querySelector("#pet-select").value == 'dog') {
-    breedForm.addEventListener("submit", getBreedInput);
-}
+// if (petType.value == 'dog') {
+//     breedForm.addEventListener("submit", getBreedInput);
+// } else if (petType.value == 'cat'){
+//     breedForm.addEventListener("submit", getBreedInputCat);
+// }
 
-// if selected option is cat, run cat breed api
-if (document.querySelector("#pet-select").value == 'cat') {
-    breedForm.addEventListener("submit", getBreedInputCat);
-}
+// // if selected option is cat, run cat breed api
+// if (document.querySelector("#pet-select").value == 'cat') {
+//     breedForm.addEventListener("submit", getBreedInputCat);
+// }
+
 
 
 
