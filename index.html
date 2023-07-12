@@ -35,16 +35,16 @@
             <h2 class="is-size-1 has-text-centered has-text-link has-text-weight-semibold">Find a breed!</h2>
             <form id="breed-input">
                 <div class="field">
-                    <label class="label">Breed: </label>
+                    <label class="label is-size-3">Breed: </label>
                     <div class="control">
-                    <input class="search-breed" type="search" placeholder="Breed name">
+                    <input class="search-breed input is-link" type="search" placeholder="Breed name">
                     </div>
                 </div>
                 
                 <div class="field">
-                    <label class="label">Pet Type</label>
+                    <label class="label is-size-3">Pet Type</label>
                     <div class="control">
-                    <div class="select">
+                    <div class="select is-link">
                         <select id="pet-select">
                         <option value="select">Select</option>
                         <option value="dog">Dog</option>
@@ -71,6 +71,11 @@
             </form>
         </section>
     </div>
+
+    <!-- div for information from APIs in javascript -->
+    <div class="breed-data section is-small m-2">
+    </div>
+
     <footer class="footer has-background-link">
         <div class="content has-text-centered has-text-white">
             <p>

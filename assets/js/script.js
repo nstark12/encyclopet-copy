@@ -18,7 +18,7 @@ function getBreedInputCat(event) {
     event.preventDefault();
     var searchTerm = breedInputEl.value;
     getInfoByCatBreed(searchTerm);
-    // localStorage.setItem("search", JSON.stringify(searchHistory));
+    localStorage.setItem("search", JSON.stringify(searchHistory));
     console.log(searchTerm)
 }
 // get user input from dropdown
@@ -38,6 +38,85 @@ function getBreedInputCat(event) {
                 })
                 .then(function(breedData) {
                     console.log(breedData);
+                    var container = document.querySelector(".breed-data");
+                    
+                    var centerDiv = document.createElement('div');
+                    centerDiv.classList.add("is-flex", "is-flex-direction-column", "is-align-items-center");
+                    container.appendChild(centerDiv);
+                    // append h1 to contaier div and add classes
+                    var h1 = document.createElement('h1');
+                    h1.classList.add("is-size-2", "has-text-centered", "has-text-link", "has-text-weight-semibold")
+                    centerDiv.appendChild(h1);
+
+                    var h2 = document.createElement('h2');
+                    h2.classList.add("is-size-3", "has-text-centered", "has-text-link")
+                    centerDiv.appendChild(h2);
+
+                    var petImg = document.createElement('img');
+                        petImg.setAttribute("src", breedData[0].image_link);
+                    centerDiv.appendChild(petImg);
+
+                    // capitalize first letter of breed name
+                    h1.innerText = breedName.charAt(0).toUpperCase() + breedName.slice(1);
+
+                    h2.innerText = "On a scale of 1 to 5 (low to high)"
+
+                    // create list items
+                    var ul = document.createElement('ul');
+
+                    // barking level
+                    var li1 = document.createElement('li');
+                    li1.innerText = "Barking Level: " + breedData[0].barking;
+
+                    // coat length
+                    var li2 = document.createElement('li');
+                    li2.innerText = "Coat Length: " + breedData[0].coat_length;
+
+                    // energy level
+                    var li3 = document.createElement('li');
+                    li3.innerText = "Energy Level: " + breedData[0].energy;
+
+                    // good with children
+                    var li4 = document.createElement('li');
+                    li4.innerText = "Good with Children: " + breedData[0].good_with_children;
+
+                    // good with other dogs
+                    var li5 = document.createElement('li');
+                    li5.innerText = "Good with other dogs: " + breedData[0].good_with_other_dogs;
+
+                    // max weight male
+                    var li6 = document.createElement('li');
+                    li6.innerText = "Maximum Weight Male: " + breedData[0].max_weight_male + " pounds";
+
+                    // max weight female
+                    var li7 = document.createElement('li');
+                    li7.innerText = "Maximum Weight Female: " + breedData[0].max_weight_female + " pounds";
+
+                    // max life expectancy
+                    var li8 = document.createElement('li');
+                    li8.innerText = "Maximum Life Expectancy: " + breedData[0].max_life_expectancy + " years";
+
+                    // trainability
+                    var li9 = document.createElement('li');
+                    li9.innerText = "Trainability: " + breedData[0].trainability;
+
+                    // shedding
+                    var li10 = document.createElement('li');
+                    li10.innerText = "Shedding: " + breedData[0].shedding;
+
+                    ul.appendChild(li1);
+                    ul.appendChild(li2);
+                    ul.appendChild(li3);
+                    ul.appendChild(li4);
+                    ul.appendChild(li5);
+                    ul.appendChild(li6);
+                    ul.appendChild(li7);
+                    ul.appendChild(li8);
+                    ul.appendChild(li9);
+                    ul.appendChild(li10);
+                    
+                    container.appendChild(ul);
+
                 })
         }
 
@@ -61,7 +140,7 @@ function getBreedInputCat(event) {
         }
 
 
-        petType.onchange = changeListener;
+petType.onchange = changeListener;
 
 function changeListener() {
     var value = this.value;
@@ -75,17 +154,6 @@ function changeListener() {
 
 changeListener();
 
-// if selected option is dog, run dog breed api
-// if (petType.value == 'dog') {
-//     breedForm.addEventListener("submit", getBreedInput);
-// } else if (petType.value == 'cat'){
-//     breedForm.addEventListener("submit", getBreedInputCat);
-// }
-
-// // if selected option is cat, run cat breed api
-// if (document.querySelector("#pet-select").value == 'cat') {
-//     breedForm.addEventListener("submit", getBreedInputCat);
-// }
 
 
 
@@ -98,23 +166,4 @@ changeListener();
 
 
 
-
-
-
-
-
-
-
-//     var apiKey = "h7s4Gq1eIM4zJOxaVd3OOV5kHKIcXVbqFCHdy5iNSlg5V9GMoq";
-// var secret = "FLdWlxWwNby81UM3FUDmkDgiU7RfB1LiwF2fpvsZ";
-
-// fetch("https://api.petfinder.com/v2/animals?type=dog&location=94109&distance=20", {
-//     headers: {
-//       Authorization: "Bearer h7s4Gq1eIM4zJOxaVd3OOV5kHKIcXVbqFCHdy5iNSlg5V9GMoq",
-//       "Content-Type": "application/json"
-//     }
-//   })
-//     .then(response => response.json())
-//     .then(data => console.log(data))
-//     .catch(error => console.error(error));
 
