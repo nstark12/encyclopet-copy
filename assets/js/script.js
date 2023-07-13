@@ -5,6 +5,7 @@ var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 var dogFact = document.querySelector("#dog-fact");
 var catFact = document.querySelector("#cat-fact");
 
+// function to get a random cat fact from the api
 function getCatFact() {
     fetch('https://catfact.ninja/fact') 
         .then(function(response) {
@@ -18,6 +19,7 @@ function getCatFact() {
         })
 }
 
+// function to get a random dog fact from the api
 function getDogFact() {
     fetch('https://dogapi.dog/api/v1/facts?number=1') 
         .then(function(response) {
@@ -33,7 +35,7 @@ function getDogFact() {
 
 
 
-// get user answer from breed input
+// get user answer from breed input run dog function
 function getBreedInput(event) {
     event.preventDefault();
     var searchTerm = breedInputEl.value;
@@ -43,6 +45,7 @@ function getBreedInput(event) {
     console.log(searchTerm)
 }
 
+// get user answer from breed input run cat function
 function getBreedInputCat(event) {
     event.preventDefault();
     clearCurrent();
@@ -51,9 +54,9 @@ function getBreedInputCat(event) {
     localStorage.setItem("search", JSON.stringify(searchHistory));
     console.log(searchTerm)
 }
-// get user input from dropdown
-    // if dog
-        // display dog breed data
+
+
+        // function to get information from api on dog breed input
         function getInfoByDogBreed(breedName) {
             fetch('https://api.api-ninjas.com/v1/dogs?name=' + breedName, {
                 method: 'GET',
@@ -150,8 +153,8 @@ function getBreedInputCat(event) {
                 })
         }
 
-    // if cat
-        // display cat breed data
+    
+        // function to get information from api on cat breed input
         function getInfoByCatBreed(breedName) {
             fetch('https://api.api-ninjas.com/v1/cats?name=' + breedName, {
                 method: 'GET',
@@ -244,8 +247,10 @@ function getBreedInputCat(event) {
         }
 
 
+// function to listen for change on select dropdown menu
 petType.onchange = changeListener;
 
+// function to run dog breed function if dog is selected and cat breed function if cat is selected
 function changeListener() {
     var value = this.value;
 
@@ -258,6 +263,7 @@ function changeListener() {
 
 changeListener();
 
+// clears current search when new search
 function clearCurrent() {
     var currentPet = document.querySelector(".breed-data");
     currentPet.innerText = "";
