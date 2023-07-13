@@ -2,6 +2,34 @@ var breedInputEl = document.querySelector(".search-breed");
 var breedForm = document.querySelector("#breed-input");
 var petType = document.querySelector("#pet-select");
 var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
+var dogFact = document.querySelector("#dog-fact");
+var catFact = document.querySelector("#cat-fact");
+
+function getCatFact() {
+    fetch('https://catfact.ninja/fact') 
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            var heroText = document.querySelector("#hero-text");
+            heroText.textContent = "";
+            heroText.textContent = data.fact;
+        })
+}
+
+function getDogFact() {
+    fetch('https://dogapi.dog/api/v1/facts?number=1') 
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            var heroText = document.querySelector("#hero-text");
+            heroText.textContent = "";
+            heroText.textContent = data.facts;
+        })
+} 
 
 
 
@@ -237,6 +265,9 @@ function clearCurrent() {
     return;
 }
 
+// add event listeners to fact buttons
+dogFact.addEventListener("click", getDogFact);
+catFact.addEventListener("click", getCatFact);
 
 
 
