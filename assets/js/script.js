@@ -70,12 +70,14 @@ function getBreedInputCat(event) {
                 success: function(result) {
                     console.log(result);
                 }
-            })
+                
+            }) 
                 .then(function(response) {
                     return response.json();
                 })
                 .then(function(breedData) {
                     console.log(breedData);
+
                     var container = document.querySelector(".breed-data");
                     
                     var centerDiv = document.createElement('div');
@@ -157,6 +159,8 @@ function getBreedInputCat(event) {
 
                 })
         }
+
+        
 
     
         // function to get information from api on cat breed input
