@@ -5,7 +5,8 @@ var dogFact = document.querySelector("#dog-fact");
 var catFact = document.querySelector("#cat-fact");
 var clearEl = document.querySelector("#clear");
 var historyEl = document.querySelector(".search-history");
-var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
+var searchHistoryDog = JSON.parse(localStorage.getItem("searchDog")) || [];
+var searchHistoryCat = JSON.parse(localStorage.getItem("searchCat")) || [];
 
 
 // function to get a random cat fact from the api
@@ -44,7 +45,8 @@ function getBreedInput(event) {
     var searchTerm = breedInputEl.value;
     clearCurrent();
     getInfoByDogBreed(searchTerm);
-    localStorage.setItem("search", JSON.stringify(searchHistory));
+    searchHistoryDog.push(searchTerm);
+    localStorage.setItem("searchDog", JSON.stringify(searchHistoryDog));
     pastSearch(searchTerm);
 }
 
@@ -54,7 +56,8 @@ function getBreedInputCat(event) {
     clearCurrent();
     var searchTerm = breedInputEl.value;
     getInfoByCatBreed(searchTerm);
-    localStorage.setItem("search", JSON.stringify(searchHistory));
+    searchHistoryCat.push(searchTerm);
+    localStorage.setItem("searchCat", JSON.stringify(searchHistoryCat));
     pastSearch(searchTerm);
 }
 
@@ -269,7 +272,8 @@ changeListener();
 // function to clear search history
 function clearHistory(event) {
     event.preventDefault();
-    localStorage.removeItem("search");
+    localStorage.removeItem("searchDog");
+    localStorage.removeItem("searchCat");
     historyEl.innerHTML = "";
     return;
 }
@@ -291,9 +295,10 @@ var pastSearchData = function(event) {
         clearCurrent();
         getInfoByDogBreed(breed);
         getInfoByCatBreed(breed);
-        changeListener(breed);
     }
 }
+
+console.log(pastSearchData);
 
 // clears current search when new search
 function clearCurrent() {
@@ -307,9 +312,8 @@ function clearCurrent() {
 // add event listeners to fact buttons
 dogFact.addEventListener("click", getDogFact);
 catFact.addEventListener("click", getCatFact);
+historyEl.addEventListener("click", pastSearchData);
 clearEl.addEventListener("click", clearHistory);
-historyEl.add("click", pastSearchData);
-
 
 
 
