@@ -1,9 +1,12 @@
 var breedInputEl = document.querySelector(".search-breed");
 var breedForm = document.querySelector("#breed-input");
 var petType = document.querySelector("#pet-select");
-var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 var dogFact = document.querySelector("#dog-fact");
 var catFact = document.querySelector("#cat-fact");
+var clearEl = document.querySelector("#clear");
+var historyEl = document.querySelector(".search-history");
+var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
+
 
 // function to get a random cat fact from the api
 function getCatFact() {
@@ -42,7 +45,7 @@ function getBreedInput(event) {
     clearCurrent();
     getInfoByDogBreed(searchTerm);
     localStorage.setItem("search", JSON.stringify(searchHistory));
-    console.log(searchTerm)
+    pastSearch(searchTerm);
 }
 
 // get user answer from breed input run cat function
@@ -52,7 +55,7 @@ function getBreedInputCat(event) {
     var searchTerm = breedInputEl.value;
     getInfoByCatBreed(searchTerm);
     localStorage.setItem("search", JSON.stringify(searchHistory));
-    console.log(searchTerm)
+    pastSearch(searchTerm);
 }
 
 
@@ -263,6 +266,35 @@ function changeListener() {
 
 changeListener();
 
+// function to clear search history
+function clearHistory(event) {
+    event.preventDefault();
+    localStorage.removeItem("search");
+    historyEl.innerHTML = "";
+    return;
+}
+
+// function to turn past searches into buttons
+var pastSearch = function(pastSearch) {
+    var pastSearchEl = document.createElement("button");
+    pastSearchEl.textContent = pastSearch;
+    pastSearchEl.setAttribute("data-breed", pastSearch);
+    pastSearchEl.setAttribute("type", "submit");
+    // prepends button to search history div in html
+    historyEl.prepend(pastSearchEl);
+}
+
+// function to display data from previous search buttons
+var pastSearchData = function(event) {
+    var breed = event.target.getAttribute("data-breed");
+    if(breed) {
+        clearCurrent();
+        getInfoByDogBreed(breed);
+        getInfoByCatBreed(breed);
+        changeListener(breed);
+    }
+}
+
 // clears current search when new search
 function clearCurrent() {
     var currentPet = document.querySelector(".breed-data");
@@ -271,9 +303,12 @@ function clearCurrent() {
     return;
 }
 
+
 // add event listeners to fact buttons
 dogFact.addEventListener("click", getDogFact);
 catFact.addEventListener("click", getCatFact);
+clearEl.addEventListener("click", clearHistory);
+historyEl.add("click", pastSearchData);
 
 
 
