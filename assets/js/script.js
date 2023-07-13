@@ -58,7 +58,6 @@ function getBreedInputCat(event) {
     getInfoByCatBreed(searchTerm);
     searchHistoryCat.push(searchTerm);
     localStorage.setItem("searchCat", JSON.stringify(searchHistoryCat));
-    pastSearch(searchTerm);
 }
 
 
