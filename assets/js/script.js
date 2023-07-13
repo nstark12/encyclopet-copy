@@ -309,6 +309,16 @@ function clearCurrent() {
 }
 
 
+// function to close notification when 'x' is clicked
+  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+    const $notification = $delete.parentNode;
+
+    $delete.addEventListener('click', () => {
+      $notification.parentNode.removeChild($notification);
+    });
+  });
+
+
 // add event listeners to fact buttons
 dogFact.addEventListener("click", getDogFact);
 catFact.addEventListener("click", getCatFact);
@@ -318,7 +328,7 @@ clearEl.addEventListener("click", clearHistory);
 
 
 
-
+console.log(getInfoByCatBreed, getInfoByDogBreed)
 
 
 
