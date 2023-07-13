@@ -280,6 +280,7 @@ function clearHistory(event) {
 // function to turn past searches into buttons
 var pastSearch = function(pastSearch) {
     var pastSearchEl = document.createElement("button");
+    pastSearchEl.classList.add("button", "is-link", "is-light", "mt-2", "mr-1");
     pastSearchEl.textContent = pastSearch;
     pastSearchEl.setAttribute("data-breed", pastSearch);
     pastSearchEl.setAttribute("type", "submit");
