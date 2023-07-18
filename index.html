@@ -18,78 +18,76 @@
     </header>
 
     <!-- Hero Section with 2 buttons -->
-    <section id="hero" class="hero is-large">
+    <section id="hero" class="hero is-medium is-large">
         <div class="hero-body">
-                <h1 id="hero-text" class="has-text-white is-size-1 has-text-centered">Not sure what to adopt? Get the facts!</h1>
+          <h1 id="hero-text" class="has-text-white is-size-1 has-text-centered">Not sure what to adopt? Get the facts!</h1>
 
-            <div class="fact-container is-flex is-justify-content-center m-2">
-                <button id="dog-fact" class="button is-link is-large m-2">Dog Fact</button>
-                <button id="cat-fact" class="button is-link is-large m-2">Cat Fact</button>
-            </div>    
+          <div class="fact-container is-flex is-justify-content-center m-2">
+              <button id="dog-fact" class="button is-link is-large m-2">Dog Fact</button>
+              <button id="cat-fact" class="button is-link is-large m-2">Cat Fact</button>
         </div>
     </section>
 
-    <!-- notification to be revealed if search input does not work -->
-    <div class="container">
-            <div class="notification is-link m-2 hide">
-                <button class="delete"></button>
+        <!-- notification to be revealed if search input does not work -->
+    <div id = "modal" class="container hide">
+        <div class="notification is-link m-2">
+            <button class="delete"></button>
                 Please choose a valid breed.
+        </div>
+    </div>
+
+     <!-- User form to input location information and wants -->
+     <div class="container">
+      <section id="breed-form" class="section is-small">
+          <h2 class="is-size-1 has-text-centered has-text-link has-text-weight-semibold">Find a breed!</h2>
+          <form id="breed-input">
+              <div class="field">
+                  <label class="label is-size-3">Breed: </label>
+                  <div class="control">
+                  <input class="search-breed input is-link" type="search" placeholder="Breed name">
+                  </div>
               </div>
-    </div>
 
-    <!-- User form to input location information and wants -->
-    <div class="container">
-        <section id="breed-form" class="section is-small">
-            <h2 class="is-size-1 has-text-centered has-text-link has-text-weight-semibold">Find a breed!</h2>
-            <form id="breed-input">
-                <div class="field">
-                    <label class="label is-size-3">Breed: </label>
-                    <div class="control">
-                    <input class="search-breed input is-link" type="search" placeholder="Breed name">
-                    </div>
-                </div>
+              
+              
+              <div class="field">
+                  <label class="label is-size-3">Pet Type</label>
+                  <div class="control">
+                  <div class="select is-link">
+                      <select id="pet-select" onchange="changeSelected(this)" required>
+                      <option value="">Select</option>
+                      <option value="dog">Dog</option>
+                      <option value="cat">Cat</option>
+                      </select>
+                  </div>
+                  </div>
+              </div>
+              
+              <div class="field is-grouped">
+                  <div class="control">
+                  <button class="button is-link" type="submit">Submit</button>
+                  <button id="clear" class="button is-link" type="submit">Clear History</button>
+                  </div>
+              </div>
+          </form>
+          <div class="search-history"></div>
+      </section>
+  </div>
 
-                
-                
-                <div class="field">
-                    <label class="label is-size-3">Pet Type</label>
-                    <div class="control">
-                    <div class="select is-link">
-                        <select id="pet-select">
-                        <option value="select">Select</option>
-                        <option value="dog">Dog</option>
-                        <option value="cat">Cat</option>
-                        </select>
-                    </div>
-                    </div>
-                </div>
-                
-                <div class="field is-grouped">
-                    <div class="control">
-                    <button class="button is-link" type="submit">Submit</button>
-                    <button id="clear" class="button is-link" type="submit">Clear History</button>
-                    </div>
-                </div>
-            </form>
-            <div class="search-history"></div>
-        </section>
-    </div>
-
-    <!-- div for information from APIs in javascript -->
-    <div class="breed-data section is-small m-2">
-    </div>
+  <!-- div for information from APIs in javascript -->
+  <div class="breed-data section is-small m-2">
+  </div>
 
     <!-- footer -->
     <footer class="footer has-background-link">
-        <div class="content has-text-centered has-text-white">
-            <p>
-              <strong class="has-text-white">encyloPet</strong> by Adam Afifi, Alan Minikel, Nicole Stark, & Noah Koleske. The source code is licensed
-              <a href="http://opensource.org/licenses/mit-license.php" class="has-text-dark">MIT</a>.
-            </p>
-          </div>
-    </footer>
-
-  
+      <div class="content has-text-centered has-text-white">
+          <p>
+            <strong class="has-text-white">encyloPet</strong> by Adam Afifi, Nicole Stark, & Noah Koleske. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php" class="has-text-dark">MIT</a>.
+          </p>
+        </div>
+  </footer>
+    
     <!-- Custom JavaScript -->
     <script src="./assets/js/script.js"></script>
 </body>
